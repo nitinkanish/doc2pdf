@@ -115,7 +115,7 @@
     } catch (e) {
       aiStatus.innerHTML = '⚠ Request blocked before reaching a response — almost certainly <b>CORS</b>: ollama.com does not send ' +
         '<code>Access-Control-Allow-Origin</code>, so browsers refuse direct calls from web pages. Options: run a tiny proxy ' +
-        '(e.g. a Cloudflare Worker) and put its URL in “endpoint”, or use a local Ollama with <code>OLLAMA_ORIGINS=https://doc2pdf.js.org</code> ' +
+        '(e.g. a Cloudflare Worker) and put its URL in “endpoint”, or use a local Ollama with <code>OLLAMA_ORIGINS=https://doc2pdfs.js.org</code> ' +
         'and endpoint <code>http://localhost:11434/api/chat</code>. Your document was not changed.';
       return;
     }
