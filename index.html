@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>doc2pdf.js — DOCX / Markdown / TXT → PDF in your browser</title>
+<meta name="description" content="Free, private, client-side DOCX, Markdown and TXT to PDF converter. Nothing is uploaded.">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>">
+</head>
+<body>
+<header>
+  <div class="logo"><span class="prompt">$</span> doc2pdf<span class="js">.js</span><span class="cursor">_</span></div>
+  <div class="tag">// DOCX · MD · TXT → PDF. 100% client-side. Your files never leave the tab.</div>
+</header>
+<main>
+<aside class="panel">
+  <label id="drop" class="drop" for="file">
+    <input type="file" id="file" accept=".docx,.md,.markdown,.txt">
+    <div class="drop-icon">⇣</div>
+    <div><b>Drop a file</b> or click to browse</div>
+    <div class="muted">.docx · .md · .txt</div>
+  </label>
+  <div class="note">⚠ Legacy <code>.doc</code> (Word 97–2003 binary) is <b>not supported</b> in-browser. Re-save as .docx first.</div>
+  <div id="status" class="status">&gt; waiting for input…</div>
+
+  <h3>// export options</h3>
+  <div class="row"><label>page</label><select id="page"><option value="a4">A4</option><option value="letter">Letter</option></select></div>
+  <div class="row"><label>orientation</label><select id="orient"><option value="portrait">portrait</option><option value="landscape">landscape</option></select></div>
+  <div class="row"><label>margin (mm)</label><input id="margin" type="number" min="0" max="50" value="15"></div>
+  <div class="row"><label>filename</label><input id="fname" value="document.pdf"></div>
+  <button id="export" class="btn primary" disabled>⤓ Export PDF</button>
+  <button id="editToggle" class="btn" disabled>✎ Edit preview</button>
+
+  <details id="ai">
+    <summary>✨ AI assist (Ollama Cloud, optional)</summary>
+    <div class="row"><label>API key</label><input id="key" type="password" placeholder="paste key — stored in localStorage only"></div>
+    <div class="row"><label>model</label><input id="model" value="gpt-oss:20b"></div>
+    <div class="row"><label>endpoint</label><input id="endpoint" value="https://ollama.com/api/chat"></div>
+    <div class="ai-actions">
+      <button class="btn" data-ai="grammar" disabled>Fix grammar</button>
+      <button class="btn" data-ai="summary" disabled>Summarise to top</button>
+      <button class="btn" data-ai="toc" disabled>Add table of contents</button>
+    </div>
+    <button id="forget" class="btn small">forget key</button>
+    <div id="aiStatus" class="muted"></div>
+  </details>
+</aside>
+<section class="stage">
+  <div class="stage-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span id="docTitle">preview</span></div>
+  <div class="paper-wrap"><article id="preview" class="paper a4"><p class="muted">Your rendered document appears here.</p></article></div>
+</section>
+</main>
+<footer>MIT · <a href="https://github.com/">source on GitHub</a> · hosted by <a href="https://js.org">js.org</a></footer>
+<script src="https://cdn.jsdelivr.net/npm/mammoth@1.8.0/mammoth.browser.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.2/dist/html2pdf.bundle.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
